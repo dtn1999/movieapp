@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Simple Nextjs App
+
+This is a simple Next.js starter app to test Junior Frontend Developer candidates. The goal is to create a simple app
+that fetches data from a public API and displays it in a user-friendly way.
+
+## Requirements
+
+- Node.js (v18 or later) [nvm](https://github.com/nvm-sh/nvm)
+- Git
 
 ## Getting Started
 
-First, run the development server:
+In the assets folder, you will find pictures of the design, which can be found at the following
+link: https://www.figma.com/community/file/1504425310188716454/movie-app
+
+## Instructions
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/dtn1999/movieapp.git
+   cd movieapp
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+   npm install # If you don't use npm, you can use yarn or pnpm
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Run the development server:
 
-## Learn More
+```bash
+   npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## API
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Search endpoint
+curl --request GET \
+     --url 'https://api.themoviedb.org/3/search/movie?query=manga&include_adult=false&language=en-US&page=1' \
+     --header 'Authorization: Bearer ${API_TOKEN}' \
+     --header 'accept: application/json'
+     
+# Movie details endpoint
+curl --request GET \
+     --url 'https://api.themoviedb.org/3/movie/238277?language=en-US' \
+     --header 'Authorization: Bearer ${API_TOKEN}' \
+     --header 'accept: application/json'
+     
+# Get people credited in a movie
+curl --request GET \
+     --url 'https://api.themoviedb.org/3/movie/238277/credits?language=en-US' \
+     --header 'Authorization: Bearer ${API_TOKEN}' \
+     --header 'accept: application/json'
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To get the image URL, add the following to the base URL:
 
-## Deploy on Vercel
+```bash
+https://image.tmdb.org/t/p/original/[poster_path]
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tasks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] When the user types in the search bar, make a request to the TMDB API to get a list of movies that match the search term.
+- [ ] Display the list of movies in a grid format, showing the movie title, poster image, release date, and vote average.
+- [ ] When the user clicks on a movie, navigate to a details page that shows more information about the movie, including the overview, genres, and cast.
