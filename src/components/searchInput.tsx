@@ -3,6 +3,8 @@ import { movieStore } from '@/store/movieStore'
 import { Search } from 'lucide-react'
 import React, { useState } from 'react'
 
+// TODO: Your code is not easy to understand because it is too fragmented
+//   Why are you using a store to perform a search?
 const SearchInput = () => {
     const [search, setSearch] = useState('')
     const {getMovies} = movieStore.getState()
