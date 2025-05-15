@@ -11,7 +11,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
   return (
     <Link href={`movies/${id}`} key={id}>
       <div className='relative w-[383px] h-[396px] space-y-2' id={id}>
-      <p className='absolute bg-[#10141F] text-xl text-white font-bold right-1 top-2 opacity-90 w-auto h-auto px-2 py-1 rounded-full z-99 text-center'>
+        <p className='absolute bg-[#10141F] text-xl text-white font-bold right-1 top-2 opacity-90 w-auto h-auto px-2 py-1 rounded-full z-99 text-center'>
           {vote_count}
         </p>
         <div className='relative w-[383px] h-3/4 rounded-xl'>

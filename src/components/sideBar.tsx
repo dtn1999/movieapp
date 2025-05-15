@@ -1,15 +1,18 @@
 import Image from 'next/image'
 import React from 'react'
 import { Grid2x2Icon } from 'lucide-react'
+import Link from 'next/link'
 export default function SideBar () {
   return (
     <div className='flex flex-col justify-between items-center gap-10 bg-[#161D2F] h-full py-12 px-4 rounded-xl'>
         <div className='relative size-[40px]'>
+            <Link href={'/movies'}>
             <Image 
                 src={'/assets/Logo.png'}
                 alt='logo'
                 fill
             />
+            </Link>
         </div>
         <div className='flex-1 h-full text-white'>
             <Grid2x2Icon size={40} />
