@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 
         const { getMovies, nbrPages } = movieStore.getState()
       // TODO: You don't really use typescript right. Why use any when you can use number directly?
+
+      //ANSWER because nextPage can be a number or either '...' and getMovies takes only number
         const [nextPage, setNextPage] = useState<any>(1)
     
         const pages = nbrPages;
@@ -13,9 +15,8 @@ import { useEffect, useState } from "react";
         useEffect(()=>{
             // TODO: Not beautiful
             //   Easier to read
-            // if(nextPage){
-            //     getMovies(nextPage)
-            // }
+
+            //ANSWER not understand well
 
             nextPage !== 0 && getMovies(nextPage)
             console.log('changed...');
@@ -65,48 +66,48 @@ import { useEffect, useState } from "react";
             <div className="flex justify-center fixed bottom-2.5 py-6">
                 {/* "<< Go to First" */}
                 {/* TODO: Why a div and not a button? */}
-                <div
+                <button
                     onClick={() => setNextPage(1)}
                     className="border-2 w-9 h-9 p-1 text-gray-300 text-center m-1 rounded-lg hover:text-white hover:bg-secondary hover:font-semibold cursor-pointer"
                 >
                     {"<<"}
-                </div>
+                </button>
 
                 {/* "< Go to Previous" */}
-                <div
+                <button
                     onClick={() => setNextPage((prev: number) => Math.max(0, prev - 1))}
                     className="border-2 w-9 h-9 p-1 text-gray-300 text-center m-1 rounded-lg hover:text-white hover:bg-secondary hover:font-semibold cursor-pointer"
                 >
                     {"<"}
-                </div>
+                </button>
 
                 {/* Page Numbers */}
                 {getVisiblePages().map((page: any, i: any) => (
-                    <div
+                    <button
                         key={i}
                         onClick={() => handlePageChange(page)}
                         className={`${nextPage === page && page !== "..." ? "bg-tert text-white" : ""
                             } border-2 w-9 h-9 p-1 text-gray-200 text-center m-1 rounded-lg hover:text-white hover:bg-secondary hover:font-semibold cursor-pointer`}
                     >
                         {page === "..." ? "..." : page + 1}
-                    </div>
+                    </button>
                 ))}
 
                 {/* "> Go to Next" */}
-                <div
+                <button
                     onClick={() => setNextPage((prev: number) => Math.min(pages - 1, prev + 1))}
                     className="border-2 w-9 h-9 p-1 text-gray-300 text-center m-1 rounded-lg hover:text-white hover:bg-secondary hover:font-semibold cursor-pointer"
                 >
                     {">"}
-                </div>
+                </button>
 
                 {/* ">> Go to Last" */}
-                <div
+                <button
                     onClick={() => setNextPage(pages - 1)}
                     className="border-2 w-9 h-9 p-1 text-gray-300 text-center m-1 rounded-lg hover:text-white hover:bg-secondary hover:font-semibold cursor-pointer"
                 >
                     {">>"}
-                </div>
+                </button>
             </div>
         );
     };

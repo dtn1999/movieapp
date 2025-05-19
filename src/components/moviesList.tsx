@@ -6,6 +6,7 @@ import HandlePagination from './pagination'
 
 const MoviesList = () => {
     // TODO: Why do you need a store?
+    //Used a store for scalabilty reason, if we need to add some features in the app
     const {getMovies} = movieStore.getState()
     const movieList = movieStore(state => state.movieList)
     useEffect(() => {
